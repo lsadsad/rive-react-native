@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn ios)",
+      "Bash(yarn install)",
+      "Bash(node --version:*)",
+      "Bash(fnm install:*)",
+      "Bash(fnm use:*)",
+      "Bash(corepack enable)",
+      "Bash(corepack prepare:*)",
+      "Bash(yarn:*)",
+      "Bash(npx expo run:ios)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
