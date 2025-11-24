@@ -10,6 +10,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		294941352ED4D99F00CD26E7 /* tryatt_trialcountdown8.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941342ED4D99E00CD26E7 /* tryatt_trialcountdown8.riv */; };
 		29C081372ED02452002611B9 /* tryatt_trialcountdown6.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */; };
 		29C081392ED150C7002611B9 /* tryatt_trialcountdown7.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
@@ -52,6 +53,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = example/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = example/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = "<group>"; };
+		294941342ED4D99E00CD26E7 /* tryatt_trialcountdown8.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown8.riv; sourceTree = "<group>"; };
 		29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown6.riv; sourceTree = "<group>"; };
 		29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown7.riv; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
 				29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */,
 				29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */,
+				294941342ED4D99E00CD26E7 /* tryatt_trialcountdown8.riv */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				29C081392ED150C7002611B9 /* tryatt_trialcountdown7.riv in Resources */,
 				9E3263072D6EA9D3002A1CFA /* v6_file.riv in Resources */,
 				9E3263082D6EA9D3002A1CFA /* rating.riv in Resources */,
+				294941352ED4D99F00CD26E7 /* tryatt_trialcountdown8.riv in Resources */,
 				9E32630A2D6EA9D3002A1CFA /* Inter-594377.ttf in Resources */,
 				9E32630B2D6EA9D3002A1CFA /* avatars.riv in Resources */,
 				9E32630C2D6EA9D3002A1CFA /* hero_editor.riv in Resources */,

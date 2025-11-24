@@ -11,7 +11,6 @@ import { Button, Switch } from 'react-native-paper';
 import Rive, {
   Fit,
   AutoBind,
-  useRiveString,
   useRiveNumber,
   useRive,
   useRiveBoolean,
@@ -20,29 +19,50 @@ import Rive, {
 export default function TrialCountdown() {
   const systemColorScheme = useColorScheme();
   const [isDarkMode, setIsDarkMode] = useState(systemColorScheme === 'dark');
-  const [localDaysRemaining, setLocalDaysRemaining] = useState(1);
+  const [localDaysRemaining, setLocalDaysRemaining] = useState(23);
   const [localDaysTotal, setLocalDaysTotal] = useState(30);
 
   // Rive setup
   const [setRiveRef, riveRef] = useRive();
 
   // Rive AutoBind hooks for CountdownDisplay model
-  const [trialText, setTrialText] = useRiveString(riveRef, 'trialText');
-  const [trialComplete, setTrialComplete] = useRiveString(riveRef, 'trialComplete');
   const [daysRemaining, setDaysRemaining] = useRiveNumber(riveRef, 'daysRemaining');
   const [daysTotal, setDaysTotal] = useRiveNumber(riveRef, 'daysTotal');
   const [isDarkModeRive, setIsDarkModeRive] = useRiveBoolean(riveRef, 'isDarkMode');
   const [skipIntro, setSkipIntro] = useRiveBoolean(riveRef, 'skipIntro');
 
-  // Set initial Rive values on mount/update
+  // Log when Rive values change
+  useEffect(() => {
+    console.log('Rive values changed:', {
+      daysRemaining,
+      daysTotal,
+      isDarkModeRive,
+    });
+  }, [daysRemaining, daysTotal, isDarkModeRive]);
+
+  // Set initial values only once on mount
   useEffect(() => {
     if (riveRef) {
-      setSkipIntro(true);
+      console.log('Initial setup - Setting skipIntro and text runs');
+      setSkipIntro(false);
+      riveRef.setTextRunValue('LabelText', 'Trial days left'); // Set TextRun value
+      riveRef.setTextRunValue('CompleteText', 'Trial Complete'); // Set TextRun value
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [riveRef]); // Only run when riveRef becomes available
+
+  // Update Rive values when local state changes
+  useEffect(() => {
+    if (riveRef) {
+      console.log('Updating Rive values:', {
+        localDaysRemaining,
+        localDaysTotal,
+        isDarkMode,
+      });
       setDaysRemaining(localDaysRemaining);
       setDaysTotal(localDaysTotal);
       setIsDarkModeRive(isDarkMode);
-      riveRef.setTextRunValue('LabelText', 'Trial days left'); // Set TextRun value
-      riveRef.setTextRunValue('CompleteText', 'Trial Complete'); // Set TextRun value
+      console.log('Rive values updated successfully');
     }
   }, [
     isDarkMode,
@@ -51,20 +71,30 @@ export default function TrialCountdown() {
     setDaysRemaining,
     setDaysTotal,
     setIsDarkModeRive,
-    setSkipIntro,
     riveRef,
   ]);
 
-  const decreaseDays = () => {setLocalDaysRemaining((prev) => Math.max(0, prev - 1));};
-  const increaseDays = () => {setLocalDaysRemaining((prev) => Math.min(localDaysTotal, prev + 1));};
-  const resetTrial = () => {setLocalDaysRemaining(localDaysTotal);};
+  const decreaseDays = () => {
+    const newValue = Math.max(0, localDaysRemaining - 1);
+    console.log('Decreasing days to:', newValue);
+    setLocalDaysRemaining(newValue);
+  };
+  const increaseDays = () => {
+    const newValue = Math.min(localDaysTotal, localDaysRemaining + 1);
+    console.log('Increasing days to:', newValue);
+    setLocalDaysRemaining(newValue);
+  };
+  const resetTrial = () => {
+    console.log('Resetting trial to:', localDaysTotal);
+    setLocalDaysRemaining(localDaysTotal);
+  };
   const toggleDarkMode = () => {setIsDarkMode((prev) => !prev);};
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          resourceName="tryatt_trialcountdown7"
+          resourceName="tryatt_trialcountdown8"
           fit={Fit.Contain}
           style={styles.animation}
           ref={setRiveRef}
@@ -128,12 +158,6 @@ export default function TrialCountdown() {
           {/* Display bound values */}
           <View style={styles.debugSection}>
             <Text style={styles.debugTitle}>Rive Values (Read-only):</Text>
-            <Text style={styles.debugText}>
-              Trial Text: {trialText ?? 'Not set'}
-            </Text>
-            <Text style={styles.debugText}>
-              Trial Complete: {trialComplete ?? 'Not set'}
-            </Text>
             <Text style={styles.debugText}>
               Days Remaining: {daysRemaining ?? 'Not set'}
             </Text>
