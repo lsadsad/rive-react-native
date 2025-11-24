@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn ios)",
+      "Bash(yarn install)",
+      "Bash(node --version:*)",
+      "Bash(fnm install:*)",
+      "Bash(fnm use:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

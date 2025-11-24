@@ -68,6 +68,10 @@ function RootLayoutNav() {
             options={{ title: 'Simple' }}
           />
           <Stack.Screen
+            name="(examples)/TrialCountdown"
+            options={{ title: 'Trial Countdown' }}
+          />
+          <Stack.Screen
             name="(examples)/DataBinding"
             options={{ title: 'DataBinding' }}
           />

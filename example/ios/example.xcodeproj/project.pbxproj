@@ -10,6 +10,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		29C081372ED02452002611B9 /* tryatt_trialcountdown6.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */; };
+		29C081392ED150C7002611B9 /* tryatt_trialcountdown7.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		859D0F7122DA19468290F653 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 702D638E9F63330ACD4580BB /* PrivacyInfo.xcprivacy */; };
 		96905EF65AED1B983A6B3ABC /* libPods-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-example.a */; };
@@ -50,6 +52,8 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = example/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = example/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = "<group>"; };
+		29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown6.riv; sourceTree = "<group>"; };
+		29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown7.riv; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.debug.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.debug.xcconfig"; sourceTree = "<group>"; };
 		702D638E9F63330ACD4580BB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = example/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */,
+				29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -284,6 +290,7 @@
 				9EA5BDEA2E835D7F003D242D /* quick_start.riv in Resources */,
 				9E3262FE2D6EA9D3002A1CFA /* switch.riv in Resources */,
 				9E3262FF2D6EA9D3002A1CFA /* out_of_band.riv in Resources */,
+				29C081372ED02452002611B9 /* tryatt_trialcountdown6.riv in Resources */,
 				9E3263002D6EA9D3002A1CFA /* rainy.riv in Resources */,
 				9E3263012D6EA9D3002A1CFA /* truck_v7.riv in Resources */,
 				9E3263022D6EA9D3002A1CFA /* layout_test.riv in Resources */,
@@ -293,6 +300,7 @@
 				9E3263042D6EA9D3002A1CFA /* two_bone_ik.riv in Resources */,
 				9E3263052D6EA9D3002A1CFA /* FollowPathCar.riv in Resources */,
 				9E3263062D6EA9D3002A1CFA /* referenced-image-2929282.png in Resources */,
+				29C081392ED150C7002611B9 /* tryatt_trialcountdown7.riv in Resources */,
 				9E3263072D6EA9D3002A1CFA /* v6_file.riv in Resources */,
 				9E3263082D6EA9D3002A1CFA /* rating.riv in Resources */,
 				9E32630A2D6EA9D3002A1CFA /* Inter-594377.ttf in Resources */,
@@ -564,10 +572,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -626,10 +631,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
