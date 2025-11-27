@@ -24,6 +24,10 @@ export default function Home() {
       <StyledLink href="/(examples)/QuickStart">Quick Start</StyledLink>
       <StyledLink href="/(examples)/Simple">Simple</StyledLink>
       <StyledLink href="/(examples)/TrialCountdown">Trial Countdown</StyledLink>
+      <StyledLink href="/(examples)/TrialCountdownMini">
+        Trial Countdown Mini
+      </StyledLink>
+      <StyledLink href="/(examples)/FraudSpamCard">Fraud Spam Card</StyledLink>
       <StyledLink href="/(examples)/DataBinding">Data Binding</StyledLink>
       <StyledLink href="/(examples)/Http">HTTP</StyledLink>
       <StyledLink href="/(examples)/MeshExample">Mesh Example</StyledLink>

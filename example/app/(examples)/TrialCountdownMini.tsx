@@ -13,7 +13,7 @@ import Rive, {
   useRiveBoolean,
 } from 'rive-react-native';
 
-export default function TrialCountdown() {
+export default function TrialCountdownMini() {
   const systemColorScheme = useColorScheme();
   const [isDarkMode] = useState(systemColorScheme === 'dark');
   
@@ -40,18 +40,18 @@ export default function TrialCountdown() {
   useEffect(() => {
     if (riveRef) {
       console.log('Initial setup - Setting Rive inputs');
-     
+      
+      // NOTE: Rive inputs often need a brief delay after mounting 
+      // or a specific order to ensure the state machine picks them up 
+      // before the first frame renders the transition.
+      
       // Control Boolean inputs
       setSkipIntro(false);
       setIsDarkModeRive(isDarkMode);
 
       // Control Number inputs
-      setDaysRemaining(5); 
-      setDaysTotal(30);
-      
-      // Control Text runs directly on the reference
-      riveRef.setTextRunValue('LabelText', 'Trial days left'); 
-      riveRef.setTextRunValue('CompleteText', 'Trial Complete'); 
+      setDaysRemaining(4); 
+      setDaysTotal(30);      
     }
   }, [riveRef, setSkipIntro, setIsDarkModeRive, isDarkMode, setDaysRemaining, setDaysTotal]);
 
@@ -59,13 +59,13 @@ export default function TrialCountdown() {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          url="https://att.com/scmsassets/mobile_apps/motion/tryatt_trialcountdown.riv"
+          url="https://att.com/scmsassets/mobile_apps/motion/tryatt_trialcountdown-mini5.riv"
           fit={Fit.Contain}
           style={styles.animation}
           ref={setRiveRef}
           stateMachineName="CountdownController"
           autoplay={true}
-          artboardName="COMP-TrialCountdown"
+          artboardName="COMP-TrialCountdown-mini"
           dataBinding={AutoBind(true)}
           onStateChanged={(stateMachineName, stateName) => {
             console.log(
@@ -93,8 +93,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   animation: {
-    width: 368,
-    height: 368,
+    width: 112,
+    height: 112,
     alignSelf: 'center',
   },
 });
+
