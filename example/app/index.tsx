@@ -6,13 +6,15 @@ import { ReactNode } from 'react';
 export function StyledLink({
   href,
   children,
+  buttonStyle,
 }: {
   // to do
   href: any;
   children: ReactNode;
+  buttonStyle?: any;
 }) {
   return (
-    <Link style={styles.button} href={href}>
+    <Link style={[styles.button, buttonStyle]} href={href}>
       {children}
     </Link>
   );
@@ -23,11 +25,11 @@ export default function Home() {
     <ScrollView contentContainerStyle={styles.container}>
       <StyledLink href="/(examples)/QuickStart">Quick Start</StyledLink>
       <StyledLink href="/(examples)/Simple">Simple</StyledLink>
-      <StyledLink href="/(examples)/TrialCountdown">Trial Countdown</StyledLink>
-      <StyledLink href="/(examples)/TrialCountdownMini">
+      <StyledLink href="/(examples)/TrialCountdown" buttonStyle={styles.purpleButton}>Trial Countdown</StyledLink>
+      <StyledLink href="/(examples)/TrialCountdownMini" buttonStyle={styles.purpleButton}>
         Trial Countdown Mini
       </StyledLink>
-      <StyledLink href="/(examples)/FraudSpamCard">Fraud Spam Card</StyledLink>
+      <StyledLink href="/(examples)/FraudSpamCard" buttonStyle={styles.purpleButton}>Fraud Spam Card</StyledLink>
       <StyledLink href="/(examples)/DataBinding">Data Binding</StyledLink>
       <StyledLink href="/(examples)/Http">HTTP</StyledLink>
       <StyledLink href="/(examples)/MeshExample">Mesh Example</StyledLink>
@@ -71,6 +73,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     textTransform: 'uppercase',
+  },
+  purpleButton: {
+    backgroundColor: '#9b59b6',
   },
   container: {
     flexGrow: 1,

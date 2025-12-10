@@ -21,8 +21,8 @@ export default function FraudSpamCard() {
   const [isDarkMode] = useState(systemColorScheme === 'dark');
   
   // Timing configuration
-  const CALLS_VALUE_DELAY = 100; // Delay for setting calls values (ms)
-  const CHART_CASCADE_DELAY = 10; // Delay between each chart value (ms)
+  const CALLS_VALUE_DELAY = 400; // Delay for setting calls values (ms)
+  const CHART_CASCADE_DELAY = 20; // Delay between each chart value (ms)
   
   // Rive setup
   const [setRiveRef, riveRef] = useRive();
@@ -32,6 +32,8 @@ export default function FraudSpamCard() {
   const [callsBlockedValue, setCallsBlockedValue] = useRiveNumber(riveRef, 'callsBlockedValue');
   const [callsAnalyzedValue, setCallsAnalyzedValue] = useRiveNumber(riveRef, 'callsAnalyzedValue');
   const [callsDayValue, setCallsDayValue] = useRiveNumber(riveRef, 'callsDayValue');
+  const [averageBlocked, setAverageBlocked] = useRiveNumber(riveRef, 'averageBlocked');
+  const [scalePercent, setScalePercent] = useRiveNumber(riveRef, 'scalePercent'); // Accessible mode scale (100-200, default 100)
 
   // Day values (day_00 through day_29)
   const [day00, setDay00] = useRiveNumber(riveRef, 'day_00');
@@ -78,6 +80,8 @@ export default function FraudSpamCard() {
         setCallsBlockedValue(42);
         setCallsAnalyzedValue(72);
         setCallsDayValue(7);
+        setAverageBlocked(50);
+        setScalePercent(100); // Default scale percent (100-200 for accessible mode)
       }, CALLS_VALUE_DELAY);
 
       // Set chart data (random values for demonstration)
@@ -117,6 +121,8 @@ export default function FraudSpamCard() {
     setCallsBlockedValue,
     setCallsAnalyzedValue,
     setCallsDayValue,
+    setAverageBlocked,
+    setScalePercent,
     setDay00, setDay01, setDay02, setDay03, setDay04, setDay05, setDay06, setDay07, setDay08, setDay09,
     setDay10, setDay11, setDay12, setDay13, setDay14, setDay15, setDay16, setDay17, setDay18, setDay19,
     setDay20, setDay21, setDay22, setDay23, setDay24, setDay25, setDay26, setDay27, setDay28, setDay29,
@@ -133,11 +139,11 @@ export default function FraudSpamCard() {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          url="https://att.com/scmsassets/mobile_apps/motion/security_fraudspam.riv"
+          url="https://att.com/scmsassets/mobile_apps/motion/rive_featuretest.riv"
           fit={Fit.Contain}
           style={styles.animation}
           ref={setRiveRef}
-          artboardName="FraudSpamCard"
+          artboardName="FraudSpamCard 2"
           stateMachineName="FraudSpamCard_SM"
           autoplay={true}
           dataBinding={AutoBind(true)}
@@ -170,8 +176,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   animation: {
-    width: 344,
-    height: 248,
+    width: '90%',
+    maxWidth: 344,
+    aspectRatio: 344 / 248, // Maintains original aspect ratio (344:248)
     alignSelf: 'center',
     // Drop shadow properties
     shadowColor: '#000000',
@@ -189,7 +196,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   resetButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#9b59b6',
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 8,
