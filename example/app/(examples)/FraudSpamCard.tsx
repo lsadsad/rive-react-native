@@ -74,7 +74,7 @@ export default function FraudSpamCard() {
 
       // Control Boolean inputs
       setIsDarkModeRive(isDarkMode);
-      setScalePercent(100); // Default scale percent (100-200 for accessible mode)
+      setScalePercent(200); // Default scale percent (100-200 for accessible mode)
 
       // Set view model inputs with a delay
       setTimeout(() => {
@@ -139,7 +139,7 @@ export default function FraudSpamCard() {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          url="https://att.com/scmsassets/mobile_apps/motion/rive_featuretest.riv"
+          url="https://att.com/scmsassets/mobile_apps/motion/security_fraudspam.riv"
           fit={Fit.Contain}
           layoutScaleFactor={-1.0} // Auto-scale based on device pixel ratio
           style={styles.animation}
