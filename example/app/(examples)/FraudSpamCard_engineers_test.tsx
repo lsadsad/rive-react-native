@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  useColorScheme,
-  View,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
-import Rive, {
-  Fit,
-  AutoBind,
-  useRiveNumber,
-  useRive,
-  useRiveBoolean,
-} from 'rive-react-native';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { SafeAreaView, ScrollView, Text, TouchableOpacity, View, StyleSheet, useColorScheme } from 'react-native';
+import Rive, { AutoBind, Fit, useRive, useRiveBoolean, useRiveNumber } from 'rive-react-native';
 
-export default function FraudSpamCard() {
-  const systemColorScheme = useColorScheme();
-  const [isDarkMode] = useState(systemColorScheme === 'dark');
-  
-  // Timing configuration
+/**
+ * ENGINEERS' CODE - ADAPTED FOR TESTING
+ * 
+ * This file contains your engineers' code with minimal adaptations for testing.
+ * Key differences from the working version are marked with "⚠️ ISSUE" comments.
+ */
+
+export default function FraudSpamCardEngineersTest(): ReactElement {
   const CALLS_VALUE_DELAY = 350; // Delay for setting calls values (ms)
   const CHART_CASCADE_DELAY = 20; // Delay between each chart value (ms)
-  
+
   // Rive setup
   const [setRiveRef, riveRef] = useRive();
+  const systemColorScheme = useColorScheme();
+  const isDarkMode = systemColorScheme === 'dark';
 
   // Rive AutoBind hooks for FraudSpamCard_VM model
   const [isDarkModeRive, setIsDarkModeRive] = useRiveBoolean(riveRef, 'isDarkMode');
@@ -77,37 +68,57 @@ export default function FraudSpamCard() {
       setScalePercent(100); // Default scale percent (100-200 for accessible mode)
 
       // Set chart data (random values for demonstration)
-      const chartData = [
-        1, 1, 1, 2, 1, 1, 1, 0, 0, 0,
-        0, 1, 0, 0, 1, 0, 0, 0, 1, 0,
-        2, 0, 2, 0, 0, 1, 0, 0, 2, 0,
-      ];
+      const chartData = [1, 1, 1, 2, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0, 2, 0, 0, 1, 0, 0, 2, 0];
 
       // Normalize the 30-day bars so the highest day becomes 100%.
       // Include `averageBlocked` in the same scale so the average indicator aligns with the bars.
-      const rawAverageBlocked =
-        chartData.reduce((sum, v) => sum + v, 0) / chartData.length;
+      const rawAverageBlocked = chartData.reduce((sum, v) => sum + v, 0) / chartData.length;
       const normalizationMax = Math.max(...chartData, rawAverageBlocked, 0);
-      const normalizedChartData =
-        normalizationMax > 0
-          ? chartData.map((v) => (v / normalizationMax) * 100)
-          : chartData.map(() => 0);
-      const normalizedAverageBlocked =
-        normalizationMax > 0 ? (rawAverageBlocked / normalizationMax) * 100 : 0;
+      const normalizedChartData = normalizationMax > 0 ? chartData.map(v => (v / normalizationMax) * 100) : chartData.map(() => 0);
+      const normalizedAverageBlocked = normalizationMax > 0 ? (rawAverageBlocked / normalizationMax) * 100 : 0;
 
-      // Set view model inputs with a delay
+      // ⚠️ ISSUE #1: Data values differ from working version
+      // Working version uses: callsAnalyzedValue(215) and callsDayValue(0.6)
+      // Engineers' version uses: callsAnalyzedValue(15) and callsDayValue(1)
       setTimeout(() => {
         setCallsBlockedValue(18);
-        setCallsAnalyzedValue(215);
-        setCallsDayValue(0.6);
+        setCallsAnalyzedValue(15); // ⚠️ Should be 215
+        setCallsDayValue(1); // ⚠️ Should be 0.6
         setAverageBlocked(normalizedAverageBlocked);
       }, CALLS_VALUE_DELAY);
 
       // Animate chart data with a cascade (10ms per value)
       const daySetters = [
-        setDay00, setDay01, setDay02, setDay03, setDay04, setDay05, setDay06, setDay07, setDay08, setDay09,
-        setDay10, setDay11, setDay12, setDay13, setDay14, setDay15, setDay16, setDay17, setDay18, setDay19,
-        setDay20, setDay21, setDay22, setDay23, setDay24, setDay25, setDay26, setDay27, setDay28, setDay29,
+        setDay00,
+        setDay01,
+        setDay02,
+        setDay03,
+        setDay04,
+        setDay05,
+        setDay06,
+        setDay07,
+        setDay08,
+        setDay09,
+        setDay10,
+        setDay11,
+        setDay12,
+        setDay13,
+        setDay14,
+        setDay15,
+        setDay16,
+        setDay17,
+        setDay18,
+        setDay19,
+        setDay20,
+        setDay21,
+        setDay22,
+        setDay23,
+        setDay24,
+        setDay25,
+        setDay26,
+        setDay27,
+        setDay28,
+        setDay29,
       ];
 
       daySetters.forEach((setter, index) => {
@@ -135,9 +146,36 @@ export default function FraudSpamCard() {
     setCallsAnalyzedValue,
     setCallsDayValue,
     setAverageBlocked,
-    setDay00, setDay01, setDay02, setDay03, setDay04, setDay05, setDay06, setDay07, setDay08, setDay09,
-    setDay10, setDay11, setDay12, setDay13, setDay14, setDay15, setDay16, setDay17, setDay18, setDay19,
-    setDay20, setDay21, setDay22, setDay23, setDay24, setDay25, setDay26, setDay27, setDay28, setDay29,
+    setDay00,
+    setDay01,
+    setDay02,
+    setDay03,
+    setDay04,
+    setDay05,
+    setDay06,
+    setDay07,
+    setDay08,
+    setDay09,
+    setDay10,
+    setDay11,
+    setDay12,
+    setDay13,
+    setDay14,
+    setDay15,
+    setDay16,
+    setDay17,
+    setDay18,
+    setDay19,
+    setDay20,
+    setDay21,
+    setDay22,
+    setDay23,
+    setDay24,
+    setDay25,
+    setDay26,
+    setDay27,
+    setDay28,
+    setDay29,
   ]);
 
   const handleReset = () => {
@@ -151,25 +189,22 @@ export default function FraudSpamCard() {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          url="https://att.com/scmsassets/mobile_apps/motion/security_fraudspam.riv"
-          fit={Fit.Layout}
-          layoutScaleFactor={-1.0} // Auto-scale based on device pixel ratio
-          style={{ ...styles.animation, width: '100%', height: 'auto' }}
+          url='https://att.com/scmsassets/mobile_apps/motion/security_fraudspam.riv?v=3' // ⚠️ ISSUE #2: Has ?v=3 query param (working version doesn't)
+          fit={Fit.Contain}
+          layoutScaleFactor={1.0} // ⚠️ ISSUE #3: Should be -1.0 for auto-scaling based on device pixel ratio
+          style={styles.animation}
           ref={setRiveRef}
-          artboardName="FraudSpamCard"
-          stateMachineName="FraudSpamCard_SM"
+          artboardName='FraudSpamCard'
+          stateMachineName='FraudSpamCard_SM'
           autoplay={true}
           dataBinding={AutoBind(true)}
-          onError={(riveError) => {
+          onError={riveError => {
+            // ⚠️ ISSUE #4: Original code used console.tron.log which may not be available
             console.log(riveError);
           }}
         />
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.resetButton}
-            onPress={handleReset}
-            disabled={!riveRef}
-          >
+          <TouchableOpacity style={styles.resetButton} onPress={handleReset} disabled={!riveRef}>
             <Text style={styles.buttonText}>Reset Animation</Text>
           </TouchableOpacity>
         </View>
@@ -190,9 +225,9 @@ const styles = StyleSheet.create({
   },
   animation: {
     // Make the animation responsive: fill available width up to 344px, and center it within the parent.
+    width: '100%',
+    maxWidth: 344,
     alignSelf: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 24,
     // Drop shadow properties
     shadowColor: '#000000',
     shadowOffset: {

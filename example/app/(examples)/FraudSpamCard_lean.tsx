@@ -44,8 +44,8 @@ export default function FraudSpamCard_lean() {
 
       // Set view model inputs with a delay
       setTimeout(() => {
-        setCallsBlockedValue(42);
-        setCallsAnalyzedValue(72);
+        setCallsBlockedValue(18);
+        setCallsAnalyzedValue(215);
         setCallsDayValue(7);
       }, CALLS_VALUE_DELAY);
 

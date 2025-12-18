@@ -31,6 +31,7 @@ export default function Home() {
       </StyledLink>
       <StyledLink href="/(examples)/FraudSpamCard" buttonStyle={styles.purpleButton}>Fraud Spam Card</StyledLink>
       <StyledLink href="/(examples)/FraudSpamCard_lean" buttonStyle={styles.purpleButton}>Fraud Spam Card Lean</StyledLink>
+      <StyledLink href="/(examples)/FraudSpamCard_comparison" buttonStyle={styles.orangeButton}>🔬 Fraud Spam Comparison</StyledLink>
       <StyledLink href="/(examples)/DataBinding">Data Binding</StyledLink>
       <StyledLink href="/(examples)/Http">HTTP</StyledLink>
       <StyledLink href="/(examples)/MeshExample">Mesh Example</StyledLink>
@@ -77,6 +78,10 @@ const styles = StyleSheet.create({
   },
   purpleButton: {
     backgroundColor: '#9b59b6',
+  },
+  orangeButton: {
+    backgroundColor: '#e67e22',
+    fontWeight: 'bold',
   },
   container: {
     flexGrow: 1,
