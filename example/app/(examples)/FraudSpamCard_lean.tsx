@@ -78,7 +78,6 @@ export default function FraudSpamCard_lean() {
         <Rive
           url="https://att.com/scmsassets/mobile_apps/motion/security_fraudspam.riv"
           fit={Fit.Contain}
-          layoutScaleFactor={-1.0} // Auto-scale based on device pixel ratio
           style={styles.animation}
           ref={setRiveRef}
           artboardName="FraudSpamCard_lean"
@@ -114,9 +113,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   animation: {
-    width: '100%',
-    maxWidth: 344,
     alignSelf: 'center',
+    width: '100%',
+    paddingHorizontal: 24,
+    paddingVertical: 24,
     // Drop shadow properties
     shadowColor: '#000000',
     shadowOffset: {

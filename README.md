@@ -65,6 +65,9 @@ Steps:
 iOS:
 - You may need to run `pod install` (first time) or `pod update RiveRuntime` (updates to the underlying Rive iOS runtime) in the `example/iOS` folder to get the runtime installed or updated
 
+Android:
+- For quick reference on launching the Android emulator, see the [Android Simulator Setup Guide](./docs/android-simulator-setup.md)
+
 ## Migration Guides
 
 Using an older version of the runtime and need to learn how to upgrade to the latest version? Check out the migration guides below in our help center that help guide you through version bumps; breaking changes and all!

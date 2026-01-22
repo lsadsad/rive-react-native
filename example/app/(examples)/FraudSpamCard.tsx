@@ -74,7 +74,7 @@ export default function FraudSpamCard() {
 
       // Control Boolean inputs
       setIsDarkModeRive(isDarkMode);
-      setScalePercent(100); // Default scale percent (100-200 for accessible mode)
+      setScalePercent(150); // Accessible mode scale (100-200)
 
       // Set chart data (random values for demonstration)
       const chartData = [
@@ -152,9 +152,8 @@ export default function FraudSpamCard() {
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
           url="https://att.com/scmsassets/mobile_apps/motion/security_fraudspam.riv"
-          fit={Fit.Layout}
-          layoutScaleFactor={-1.0} // Auto-scale based on device pixel ratio
-          style={{ ...styles.animation, width: '100%', height: 'auto' }}
+          fit={Fit.Contain}
+          style={styles.animation}
           ref={setRiveRef}
           artboardName="FraudSpamCard"
           stateMachineName="FraudSpamCard_SM"
@@ -191,6 +190,7 @@ const styles = StyleSheet.create({
   animation: {
     // Make the animation responsive: fill available width up to 344px, and center it within the parent.
     alignSelf: 'center',
+    width: '100%', 
     paddingHorizontal: 24,
     paddingVertical: 24,
     // Drop shadow properties

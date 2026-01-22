@@ -28,6 +28,7 @@ Follow dependency installation instructions from the [React Native docs here](ht
 ```
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home`
 ```
+- **Quick Reference**: See [Android Simulator Setup Guide](./docs/android-simulator-setup.md) for commands to launch the Android emulator and run the app
 
 ### Testing in a new Expo project
 1. In `rive-react-native` run `npm pack` which will create `rive-react-native-x.y.z.tgz`

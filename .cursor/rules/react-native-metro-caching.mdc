@@ -1,0 +1,68 @@
+---
+description: React Native Metro bundler caching issues - when code changes don't appear in simulator
+globs: ["**/*.tsx", "**/*.ts", "**/*.js", "**/*.jsx"]
+alwaysApply: false
+---
+
+# React Native Metro Bundler Caching Issues
+
+## Problem Pattern
+
+When a user reports that their code changes "aren't working" or "aren't showing up in the simulator" despite the code looking correct, the issue is often **NOT a code bug** but rather a **Metro bundler caching issue**.
+
+### Symptoms
+- Code changes in JS/TS files don't reflect in the running app
+- Values logged or sent to native don't match what's in the source file
+- Hot reload / fast refresh doesn't pick up changes
+- User says "I changed X to Y but it's still showing X"
+
+## Diagnostic Steps
+
+Before assuming the code is broken:
+
+1. **Verify the file on disk** - Read the actual file to confirm the user's changes are saved
+2. **Check if Metro is running** - Look for processes on port 8081
+3. **Compare expected vs actual values** - If you have logging, check if the values reaching native match the source code
+
+## Solution
+
+```bash
+# 1. Kill stale Metro process
+lsof -ti:8081 | xargs kill -9
+
+# 2. Clear Metro and Expo cache
+cd <project-root>
+rm -rf node_modules/.cache .expo
+
+# 3. For Expo projects - rebuild with fresh Metro
+npx expo run:ios   # or run:android
+
+# 4. For bare React Native projects
+npx react-native start --reset-cache
+```
+
+## Key Commands Reference
+
+| Command | Purpose |
+|---------|---------|
+| `lsof -ti:8081 \| xargs kill -9` | Kill Metro process on port 8081 |
+| `rm -rf node_modules/.cache` | Clear Metro cache |
+| `rm -rf .expo` | Clear Expo cache |
+| `npx expo start --clear` | Start Expo with cleared cache |
+| `npx react-native start --reset-cache` | Start Metro with reset cache |
+
+## Important Notes
+
+- **Don't immediately assume code bugs** - Metro caching is a common culprit
+- **Native code changes require rebuild** - JS-only changes can hot reload, but Swift/Kotlin changes need `npx expo run:ios/android`
+- **Expo Go vs Development Build** - Custom native code requires a development build, not Expo Go
+- `npx expo run:ios` rebuilds native + starts Metro
+- `npx expo start` only starts Metro (for use with Expo Go or pre-built dev client)
+
+## Real-World Example
+
+A user reported `setScalePercent(200)` wasn't working. Investigation showed:
+- Source file had `setScalePercent(200)`
+- Native logs showed value `100` being received
+- **Root cause**: Metro was serving cached JS with the old value
+- **Fix**: Kill Metro, clear cache, rebuild → value `200` correctly sent
