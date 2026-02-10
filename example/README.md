@@ -25,6 +25,16 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
+## Adding Rive Files
+
+To add local `.riv` files to the example app, see **[docs/ADDING_RIVE_FILES.md](./docs/ADDING_RIVE_FILES.md)** for the complete guide.
+
+**Quick Summary:**
+1. Copy `.riv` file to `assets/rive/`
+2. Add to iOS Xcode project
+3. Copy to `android/app/src/main/res/raw/` (lowercase filename)
+4. Rebuild both platforms: `npx expo run:ios` and `npx expo run:android`
+
 ## Get a fresh project
 
 When you're ready, run:

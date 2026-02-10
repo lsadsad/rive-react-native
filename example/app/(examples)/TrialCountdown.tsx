@@ -16,10 +16,9 @@ import Rive, {
 export default function TrialCountdown() {
   const systemColorScheme = useColorScheme();
   const [isDarkMode] = useState(systemColorScheme === 'dark');
-  
+
   // Rive setup
   const [setRiveRef, riveRef] = useRive();
-
   // Rive AutoBind hooks for CountdownDisplay model
   const [daysRemaining, setDaysRemaining] = useRiveNumber(riveRef, 'daysRemaining');
   const [daysTotal, setDaysTotal] = useRiveNumber(riveRef, 'daysTotal');
@@ -52,6 +51,8 @@ export default function TrialCountdown() {
       // Control Text runs directly on the reference
       riveRef.setTextRunValue('LabelText', 'Trial days left'); 
       riveRef.setTextRunValue('CompleteText', 'Trial Complete'); 
+
+      // riveRef.play();
     }
   }, [riveRef, setSkipIntro, setIsDarkModeRive, isDarkMode, setDaysRemaining, setDaysTotal]);
 
@@ -59,7 +60,7 @@ export default function TrialCountdown() {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          url="https://att.com/scmsassets/mobile_apps/motion/tryatt_trialcountdown.riv"
+          resourceName="tryatt_trialcountdown11"
           fit={Fit.Contain}
           style={styles.animation}
           ref={setRiveRef}

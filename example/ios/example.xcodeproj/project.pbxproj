@@ -21,6 +21,7 @@
 		294941452ED6404000CD26E7 /* security_fraudspam2.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941442ED6404000CD26E7 /* security_fraudspam2.riv */; };
 		294941472ED6427400CD26E7 /* security_fraudspam3.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941462ED6427400CD26E7 /* security_fraudspam3.riv */; };
 		294941492ED6523B00CD26E7 /* security_fraudspam4.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941482ED6523B00CD26E7 /* security_fraudspam4.riv */; };
+		2949414B2ED6700100CD26E7 /* tryatt_trialcountdown11.riv in Resources */ = {isa = PBXBuildFile; fileRef = 2949414A2ED6700000CD26E7 /* tryatt_trialcountdown11.riv */; };
 		29C081372ED02452002611B9 /* tryatt_trialcountdown6.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */; };
 		29C081392ED150C7002611B9 /* tryatt_trialcountdown7.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
@@ -74,6 +75,7 @@
 		294941442ED6404000CD26E7 /* security_fraudspam2.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = security_fraudspam2.riv; sourceTree = "<group>"; };
 		294941462ED6427400CD26E7 /* security_fraudspam3.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = security_fraudspam3.riv; sourceTree = "<group>"; };
 		294941482ED6523B00CD26E7 /* security_fraudspam4.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = security_fraudspam4.riv; sourceTree = "<group>"; };
+		2949414A2ED6700000CD26E7 /* tryatt_trialcountdown11.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown11.riv; sourceTree = "<group>"; };
 		29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown6.riv; sourceTree = "<group>"; };
 		29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown7.riv; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +207,7 @@
 				294941442ED6404000CD26E7 /* security_fraudspam2.riv */,
 				294941462ED6427400CD26E7 /* security_fraudspam3.riv */,
 				294941482ED6523B00CD26E7 /* security_fraudspam4.riv */,
+				2949414A2ED6700000CD26E7 /* tryatt_trialcountdown11.riv */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
 				2949413F2ED5144600CD26E7 /* tryatt_trialcountdown-mini3.riv in Resources */,
 				859D0F7122DA19468290F653 /* PrivacyInfo.xcprivacy in Resources */,
+				2949414B2ED6700100CD26E7 /* tryatt_trialcountdown11.riv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
