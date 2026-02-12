@@ -17,6 +17,28 @@ export default function TrialCountdown() {
   const systemColorScheme = useColorScheme();
   const [isDarkMode] = useState(systemColorScheme === 'dark');
 
+  /**
+   * 🔀 EASY TOGGLE: Remote URL vs Local File
+   * 
+   * Change `USE_REMOTE` to switch between sources:
+   * - true  = Load from URL (with cache busting)
+   * - false = Load local bundled file
+   */
+  const USE_REMOTE = false;
+  
+  // Configuration for each source
+  const remoteUrl = 'https://att.com/scmsassets/mobile_apps/motion/tryatt_trialcountdown.riv';
+  const localResourceName = 'tryatt_trialcountdown11'; // Your local .riv filename (without extension)
+  
+  // Cache busting for remote URLs (only used when USE_REMOTE is true)
+  const [cacheKey, setCacheKey] = useState(Date.now());
+  
+  useEffect(() => {
+    if (USE_REMOTE) {
+      setCacheKey(Date.now());
+    }
+  }, [remoteUrl]);
+
   // Rive setup
   const [setRiveRef, riveRef] = useRive();
   // Rive AutoBind hooks for CountdownDisplay model
@@ -60,7 +82,10 @@ export default function TrialCountdown() {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          resourceName="tryatt_trialcountdown11"
+          {...(USE_REMOTE 
+            ? { url: `${remoteUrl}?t=${cacheKey}` }
+            : { resourceName: localResourceName }
+          )}
           fit={Fit.Contain}
           style={styles.animation}
           ref={setRiveRef}

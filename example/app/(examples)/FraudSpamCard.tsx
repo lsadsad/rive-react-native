@@ -24,6 +24,28 @@ export default function FraudSpamCard() {
   const CALLS_VALUE_DELAY = 350; // Delay for setting calls values (ms)
   const CHART_CASCADE_DELAY = 20; // Delay between each chart value (ms)
   
+  /**
+   * 🔀 EASY TOGGLE: Remote URL vs Local File
+   * 
+   * Change `USE_REMOTE` to switch between sources:
+   * - true  = Load from URL (with cache busting)
+   * - false = Load local bundled file
+   */
+  const USE_REMOTE = true;
+  
+  // Configuration for each source
+  const remoteUrl = 'https://att.com/scmsassets/mobile_apps/motion/security_fraudspam.riv';
+  const localResourceName = 'security_fraudspam'; // Your local .riv filename (without extension)
+  
+  // Cache busting for remote URLs (only used when USE_REMOTE is true)
+  const [cacheKey, setCacheKey] = useState(Date.now());
+  
+  useEffect(() => {
+    if (USE_REMOTE) {
+      setCacheKey(Date.now());
+    }
+  }, [remoteUrl]);
+  
   // Rive setup
   const [setRiveRef, riveRef] = useRive();
 
@@ -74,7 +96,7 @@ export default function FraudSpamCard() {
 
       // Control Boolean inputs
       setIsDarkModeRive(isDarkMode);
-      setScalePercent(150); // Accessible mode scale (100-200)
+      setScalePercent(100); // Accessible mode scale (100-200)
 
       // Set chart data (random values for demonstration)
       const chartData = [
@@ -151,7 +173,10 @@ export default function FraudSpamCard() {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          url="https://att.com/scmsassets/mobile_apps/motion/security_fraudspam.riv"
+          {...(USE_REMOTE 
+            ? { url: `${remoteUrl}?t=${cacheKey}` }
+            : { resourceName: localResourceName }
+          )}
           fit={Fit.Contain}
           style={styles.animation}
           ref={setRiveRef}
@@ -193,16 +218,6 @@ const styles = StyleSheet.create({
     width: '100%', 
     paddingHorizontal: 24,
     paddingVertical: 24,
-    // Drop shadow properties
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.16,
-    shadowRadius: 4,
-    // Android shadow
-    elevation: 4,
   },
   buttonContainer: {
     marginTop: 20,

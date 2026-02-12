@@ -17,6 +17,28 @@ export default function TrialCountdownMini() {
   const systemColorScheme = useColorScheme();
   const [isDarkMode] = useState(systemColorScheme === 'dark');
   
+  /**
+   * 🔀 EASY TOGGLE: Remote URL vs Local File
+   * 
+   * Change `USE_REMOTE` to switch between sources:
+   * - true  = Load from URL (with cache busting)
+   * - false = Load local bundled file
+   */
+  const USE_REMOTE = true;
+  
+  // Configuration for each source
+  const remoteUrl = 'https://att.com/scmsassets/mobile_apps/motion/tryatt_trialcountdown-mini5.riv';
+  const localResourceName = 'tryatt_trialcountdown_mini'; // Your local .riv filename (without extension)
+  
+  // Cache busting for remote URLs (only used when USE_REMOTE is true)
+  const [cacheKey, setCacheKey] = useState(Date.now());
+  
+  useEffect(() => {
+    if (USE_REMOTE) {
+      setCacheKey(Date.now());
+    }
+  }, [remoteUrl]);
+  
   // Rive setup
   const [setRiveRef, riveRef] = useRive();
 
@@ -59,7 +81,10 @@ export default function TrialCountdownMini() {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Rive
-          url="https://att.com/scmsassets/mobile_apps/motion/tryatt_trialcountdown-mini5.riv"
+          {...(USE_REMOTE 
+            ? { url: `${remoteUrl}?t=${cacheKey}` }
+            : { resourceName: localResourceName }
+          )}
           fit={Fit.Contain}
           style={styles.animation}
           ref={setRiveRef}
@@ -67,14 +92,11 @@ export default function TrialCountdownMini() {
           autoplay={true}
           artboardName="COMP-TrialCountdown-mini"
           dataBinding={AutoBind(true)}
+          onError={(event) => {
+            console.error('❌ Rive Error:', JSON.stringify(event.nativeEvent));
+          }}
           onStateChanged={(stateMachineName, stateName) => {
-            console.log(
-              'State changed:',
-              'Machine:',
-              stateMachineName,
-              'State:',
-              stateName
-            );
+            console.log('State changed:', 'Machine:', stateMachineName, 'State:', stateName);
           }}
         />
       </ScrollView>

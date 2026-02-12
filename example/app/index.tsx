@@ -29,10 +29,7 @@ export default function Home() {
       <StyledLink href="/(examples)/TrialCountdownMini" buttonStyle={styles.purpleButton}>
         Trial Countdown Mini
       </StyledLink>
-      <StyledLink href="/(examples)/FraudSpamCard" buttonStyle={styles.purpleButton}>Fraud Spam Card (Legacy)</StyledLink>
-      <StyledLink href="/(examples)/FraudSpamCard_v2" buttonStyle={styles.greenButton}>Fraud Spam Card v2 (Optimized)</StyledLink>
-      <StyledLink href="/(examples)/FraudSpamCard_lean" buttonStyle={styles.purpleButton}>Fraud Spam Card Lean (Legacy)</StyledLink>
-      <StyledLink href="/(examples)/FraudSpamCard_lean_v2" buttonStyle={styles.greenButton}>Fraud Spam Card Lean v2 (Optimized)</StyledLink>
+      <StyledLink href="/(examples)/FraudSpamCard" buttonStyle={styles.purpleButton}>Fraud Spam Card</StyledLink>
       <StyledLink href="/(examples)/DataBinding">Data Binding</StyledLink>
       <StyledLink href="/(examples)/Http">HTTP</StyledLink>
       <StyledLink href="/(examples)/MeshExample">Mesh Example</StyledLink>
