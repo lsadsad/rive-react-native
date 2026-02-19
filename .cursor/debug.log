@@ -1,0 +1,54 @@
+{"location":"swift:autoBindCallback","message":"enableAutoBind callback fired","data":{"m1TriggerNonNil":true,"prevInstanceNonNil":false,"isSameInstance":false,"existingListenerCount":0},"timestamp":1771534730645,"hypothesisId":"H-instance"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone1LinkTapped","key":"trigger:milestone1LinkTapped:118"},"timestamp":1771534730658,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone2LinkTapped","key":"trigger:milestone2LinkTapped:118"},"timestamp":1771534730659,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone3LinkTapped","key":"trigger:milestone3LinkTapped:118"},"timestamp":1771534730659,"hypothesisId":"H-trigger"}
+{"location":"DeviceInstallment.tsx:useEffect:hideLinks","message":"hideLink values being set","data":{"scenarioType":2,"m1HideLink":true,"m2HideLink":false,"m3HideLink":false,"milestone2Visible":true},"timestamp":1771534730653,"hypothesisId":"H3-H4"}
+{"location":"swift:didChangeState","message":"SM state changed","data":{"stateName":"LightMode","smName":"MilestoneStates"},"timestamp":1771534730740,"hypothesisId":"H-sm-input"}
+{"location":"swift:didChangeState","message":"SM state changed","data":{"stateName":"Scale100","smName":"MilestoneStates"},"timestamp":1771534730740,"hypothesisId":"H-sm-input"}
+{"location":"swift:didChangeState","message":"SM state changed","data":{"stateName":"Milestone1Active","smName":"MilestoneStates"},"timestamp":1771534730740,"hypothesisId":"H-sm-input"}
+{"location":"swift:didChangeState","message":"SM state changed","data":{"stateName":"Milestone2Inactive","smName":"MilestoneStates"},"timestamp":1771534730740,"hypothesisId":"H-sm-input"}
+{"location":"swift:didChangeState","message":"SM state changed","data":{"stateName":"Milestone3Inactive","smName":"MilestoneStates"},"timestamp":1771534730740,"hypothesisId":"H-sm-input"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":1,"touchEvent":0},"timestamp":1771534737179,"hypothesisId":"H-hit"}
+{"location":"swift:triggerFired","message":"VM trigger fired!","data":{"path":"milestone2LinkTapped"},"timestamp":1771534737182,"hypothesisId":"H-trigger"}
+{"location":"DeviceInstallment.tsx:milestone2LinkTapped","message":"M2 trigger fired","data":{"scenarioType":2},"timestamp":1771534737182,"hypothesisId":"H-trigger"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":3},"timestamp":1771534737309,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":4},"timestamp":1771534737310,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":1,"touchEvent":0},"timestamp":1771534740568,"hypothesisId":"H-hit"}
+{"location":"swift:triggerFired","message":"VM trigger fired!","data":{"path":"milestone3LinkTapped"},"timestamp":1771534740576,"hypothesisId":"H-trigger"}
+{"location":"DeviceInstallment.tsx:milestone3LinkTapped","message":"M3 trigger fired","data":{"scenarioType":2},"timestamp":1771534740577,"hypothesisId":"H-trigger"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":3},"timestamp":1771534740693,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":4},"timestamp":1771534740693,"hypothesisId":"H-hit"}
+{"location":"DeviceInstallment.tsx:useEffect:hideLinks","message":"hideLink values being set","data":{"scenarioType":1,"m1HideLink":true,"m2HideLink":false,"m3HideLink":false,"milestone2Visible":false},"timestamp":1771534743793,"hypothesisId":"H3-H4"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone1LinkTapped","key":"trigger:milestone1LinkTapped:118"},"timestamp":1771534743797,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone2LinkTapped","key":"trigger:milestone2LinkTapped:118"},"timestamp":1771534743797,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone3LinkTapped","key":"trigger:milestone3LinkTapped:118"},"timestamp":1771534743798,"hypothesisId":"H-trigger"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":1,"touchEvent":0},"timestamp":1771534744678,"hypothesisId":"H-hit"}
+{"location":"swift:triggerFired","message":"VM trigger fired!","data":{"path":"milestone3LinkTapped"},"timestamp":1771534744679,"hypothesisId":"H-trigger"}
+{"location":"DeviceInstallment.tsx:milestone3LinkTapped","message":"M3 trigger fired","data":{"scenarioType":1},"timestamp":1771534744680,"hypothesisId":"H-trigger"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":3},"timestamp":1771534744776,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":4},"timestamp":1771534744776,"hypothesisId":"H-hit"}
+{"location":"DeviceInstallment.tsx:useEffect:hideLinks","message":"hideLink values being set","data":{"scenarioType":3,"m1HideLink":false,"m2HideLink":false,"m3HideLink":false,"milestone2Visible":true},"timestamp":1771534748352,"hypothesisId":"H3-H4"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone1LinkTapped","key":"trigger:milestone1LinkTapped:118"},"timestamp":1771534748356,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone2LinkTapped","key":"trigger:milestone2LinkTapped:118"},"timestamp":1771534748356,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone3LinkTapped","key":"trigger:milestone3LinkTapped:118"},"timestamp":1771534748356,"hypothesisId":"H-trigger"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":1,"touchEvent":0},"timestamp":1771534749139,"hypothesisId":"H-hit"}
+{"location":"swift:triggerFired","message":"VM trigger fired!","data":{"path":"milestone1LinkTapped"},"timestamp":1771534749142,"hypothesisId":"H-trigger"}
+{"location":"DeviceInstallment.tsx:milestone1LinkTapped","message":"M1 trigger fired","data":{"scenarioType":3},"timestamp":1771534749143,"hypothesisId":"H-trigger"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":3},"timestamp":1771534749243,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":4},"timestamp":1771534749243,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":1,"touchEvent":0},"timestamp":1771534750717,"hypothesisId":"H-hit"}
+{"location":"swift:triggerFired","message":"VM trigger fired!","data":{"path":"milestone2LinkTapped"},"timestamp":1771534750727,"hypothesisId":"H-trigger"}
+{"location":"DeviceInstallment.tsx:milestone2LinkTapped","message":"M2 trigger fired","data":{"scenarioType":3},"timestamp":1771534750727,"hypothesisId":"H-trigger"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":3},"timestamp":1771534750810,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":4},"timestamp":1771534750810,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":1,"touchEvent":0},"timestamp":1771534752296,"hypothesisId":"H-hit"}
+{"location":"swift:triggerFired","message":"VM trigger fired!","data":{"path":"milestone3LinkTapped"},"timestamp":1771534752297,"hypothesisId":"H-trigger"}
+{"location":"DeviceInstallment.tsx:milestone3LinkTapped","message":"M3 trigger fired","data":{"scenarioType":3},"timestamp":1771534752297,"hypothesisId":"H-trigger"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":3},"timestamp":1771534752393,"hypothesisId":"H-hit"}
+{"location":"swift:hitResult","message":"Hit result from state machine","data":{"hitResult":0,"touchEvent":4},"timestamp":1771534752393,"hypothesisId":"H-hit"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone1LinkTapped","key":"trigger:milestone1LinkTapped:118"},"timestamp":1771534803717,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone2LinkTapped","key":"trigger:milestone2LinkTapped:118"},"timestamp":1771534803718,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone3LinkTapped","key":"trigger:milestone3LinkTapped:118"},"timestamp":1771534803718,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone1LinkTapped","key":"trigger:milestone1LinkTapped:118"},"timestamp":1771534813674,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone2LinkTapped","key":"trigger:milestone2LinkTapped:118"},"timestamp":1771534813677,"hypothesisId":"H-trigger"}
+{"location":"swift:registerPropertyListener:Trigger","message":"Registering trigger listener","data":{"path":"milestone3LinkTapped","key":"trigger:milestone3LinkTapped:118"},"timestamp":1771534813677,"hypothesisId":"H-trigger"}

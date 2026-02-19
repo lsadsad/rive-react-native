@@ -10,6 +10,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2906807D2F467FDB00CE754F /* services_installments0.riv in Resources */ = {isa = PBXBuildFile; fileRef = 2906807C2F467FDB00CE754F /* services_installments0.riv */; };
 		294941352ED4D99F00CD26E7 /* tryatt_trialcountdown8.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941342ED4D99E00CD26E7 /* tryatt_trialcountdown8.riv */; };
 		294941372ED4F50700CD26E7 /* tryatt_trialcountdown-mini.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941362ED4F50700CD26E7 /* tryatt_trialcountdown-mini.riv */; };
 		294941392ED4F53E00CD26E7 /* tryatt_trialcountdown9.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941382ED4F53E00CD26E7 /* tryatt_trialcountdown9.riv */; };
@@ -22,6 +23,7 @@
 		294941472ED6427400CD26E7 /* security_fraudspam3.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941462ED6427400CD26E7 /* security_fraudspam3.riv */; };
 		294941492ED6523B00CD26E7 /* security_fraudspam4.riv in Resources */ = {isa = PBXBuildFile; fileRef = 294941482ED6523B00CD26E7 /* security_fraudspam4.riv */; };
 		2949414B2ED6700100CD26E7 /* tryatt_trialcountdown11.riv in Resources */ = {isa = PBXBuildFile; fileRef = 2949414A2ED6700000CD26E7 /* tryatt_trialcountdown11.riv */; };
+		29833E792F47ADAA00F6FD10 /* services_installments.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29833E782F47ADAA00F6FD10 /* services_installments.riv */; };
 		29C081372ED02452002611B9 /* tryatt_trialcountdown6.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */; };
 		29C081392ED150C7002611B9 /* tryatt_trialcountdown7.riv in Resources */ = {isa = PBXBuildFile; fileRef = 29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
@@ -64,6 +66,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = example/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = example/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = "<group>"; };
+		2906807C2F467FDB00CE754F /* services_installments0.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = services_installments0.riv; sourceTree = "<group>"; };
 		294941342ED4D99E00CD26E7 /* tryatt_trialcountdown8.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown8.riv; sourceTree = "<group>"; };
 		294941362ED4F50700CD26E7 /* tryatt_trialcountdown-mini.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tryatt_trialcountdown-mini.riv"; sourceTree = "<group>"; };
 		294941382ED4F53E00CD26E7 /* tryatt_trialcountdown9.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown9.riv; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		294941462ED6427400CD26E7 /* security_fraudspam3.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = security_fraudspam3.riv; sourceTree = "<group>"; };
 		294941482ED6523B00CD26E7 /* security_fraudspam4.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = security_fraudspam4.riv; sourceTree = "<group>"; };
 		2949414A2ED6700000CD26E7 /* tryatt_trialcountdown11.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown11.riv; sourceTree = "<group>"; };
+		29833E782F47ADAA00F6FD10 /* services_installments.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = services_installments.riv; sourceTree = "<group>"; };
 		29C081362ED02452002611B9 /* tryatt_trialcountdown6.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown6.riv; sourceTree = "<group>"; };
 		29C081382ED150C7002611B9 /* tryatt_trialcountdown7.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = tryatt_trialcountdown7.riv; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +167,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				29833E782F47ADAA00F6FD10 /* services_installments.riv */,
+				2906807C2F467FDB00CE754F /* services_installments0.riv */,
 				9EA5BDE92E835D7F003D242D /* quick_start.riv */,
 				F83E26CD2DBBE0860086A423 /* rewards.riv */,
 				9EEC77CA2D7B866D006D35DC /* nested_inputs.riv */,
@@ -288,7 +294,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2610;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
@@ -344,6 +350,8 @@
 				2949413B2ED5049700CD26E7 /* tryatt_trialcountdown-mini2.riv in Resources */,
 				294941392ED4F53E00CD26E7 /* tryatt_trialcountdown9.riv in Resources */,
 				9E3263062D6EA9D3002A1CFA /* referenced-image-2929282.png in Resources */,
+				29833E792F47ADAA00F6FD10 /* services_installments.riv in Resources */,
+				2906807D2F467FDB00CE754F /* services_installments0.riv in Resources */,
 				29C081392ED150C7002611B9 /* tryatt_trialcountdown7.riv in Resources */,
 				9E3263072D6EA9D3002A1CFA /* v6_file.riv in Resources */,
 				9E3263082D6EA9D3002A1CFA /* rating.riv in Resources */,
@@ -620,10 +628,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -682,10 +687,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

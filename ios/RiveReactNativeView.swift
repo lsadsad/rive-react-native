@@ -262,6 +262,12 @@ class RiveReactNativeView: RCTView, RivePlayerDelegate, RiveStateMachineDelegate
             if autoBind {
                 viewModel.riveModel?.enableAutoBind { [weak self] instance in
                     self?.dataBindingViewModelInstance = instance
+                    // Re-register any listeners that may have been registered before this callback fired
+                    self?.propertyListeners.forEach { (_, value) in
+                        if value.dataBindingInstance !== instance {
+                            self?.registerPropertyListener(path: value.path, propertyType: value.propertyType)
+                        }
+                    }
                 }
             } else {
                 viewModel.riveModel?.disableAutoBind()
@@ -320,6 +326,11 @@ class RiveReactNativeView: RCTView, RivePlayerDelegate, RiveStateMachineDelegate
         cleanupFileAssetCache()
         
         if let name = resourceName {
+            guard Bundle.main.path(forResource: name, ofType: "riv") != nil else {
+                handleRiveError(error: createAssetFileError(name))
+                return
+            }
+            
             url = nil
             resourceFromBundle = true
             
@@ -708,20 +719,45 @@ class RiveReactNativeView: RCTView, RivePlayerDelegate, RiveStateMachineDelegate
     }
     
     // MARK: - Data Binding
+
+    private var pendingAdvance = false
+
+    private func scheduleAdvanceIfNeeded() {
+        guard !pendingAdvance else { return }
+        pendingAdvance = true
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.pendingAdvance = false
+            if self.viewModel?.isPlaying == false {
+                self.riveView?.advance(delta: 0.4)
+                // Second pass: flush nested VM (DotController) binding changes.
+                // Uses same delta as first pass to ensure any cascading state transitions fully resolve.
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self, self.viewModel?.isPlaying == false else { return }
+                    self.riveView?.advance(delta: 0.4)
+                }
+            }
+        }
+    }
+
     func setBooleanPropertyValue(path: String, value: Bool) {
         dataBindingViewModelInstance?.booleanProperty(fromPath: path)?.value = value
+        scheduleAdvanceIfNeeded()
     }
-    
+
     func setStringPropertyValue(path: String, value: String) {
         dataBindingViewModelInstance?.stringProperty(fromPath: path)?.value = value
+        scheduleAdvanceIfNeeded()
     }
-    
+
     func setNumberPropertyValue(path: String, value: Float) {
         dataBindingViewModelInstance?.numberProperty(fromPath: path)?.value = value
+        scheduleAdvanceIfNeeded()
     }
-    
+
     func setColorPropertyValue(path: String, r: Int, g: Int, b: Int, a: Int) {
         dataBindingViewModelInstance?.colorProperty(fromPath: path)?.value = UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(a) / 255.0)
+        scheduleAdvanceIfNeeded()
     }
     
     func setEnumPropertyValue(path: String, value: String) {
@@ -855,12 +891,15 @@ class RiveReactNativeView: RCTView, RivePlayerDelegate, RiveStateMachineDelegate
     }
     
     // MARK: - StateMachineDelegate
-    
+
+    // Called by RiveView after UIKit touches are processed through the state machine.
+    // When the SM is paused, queued Rive Events are never flushed unless we advance here.
+    @objc func touchEnded(onArtboard artboard: RiveArtboard?, atLocation location: CGPoint) {
+        riveView?.advance(delta: 0.1)
+    }
+
     @objc func stateMachine(_ stateMachine: RiveStateMachineInstance, didChangeState stateName: String) {
         onStateChanged?(["stateMachineName": stateMachine.name(), "stateName": stateName])
-    }
-    
-    @objc func stateMachine(_ stateMachine: RiveStateMachineInstance, receivedInput input: StateMachineInput) {
     }
     
     @objc func onRiveEventReceived(onRiveEvent riveEvent: RiveEvent) {

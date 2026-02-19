@@ -30,6 +30,7 @@ export default function Home() {
         Trial Countdown Mini
       </StyledLink>
       <StyledLink href="/(examples)/FraudSpamCard" buttonStyle={styles.purpleButton}>Fraud Spam Card</StyledLink>
+      <StyledLink href="/(examples)/DeviceInstallment" buttonStyle={styles.purpleButton}>Device Installment</StyledLink>
       <StyledLink href="/(examples)/DataBinding">Data Binding</StyledLink>
       <StyledLink href="/(examples)/Http">HTTP</StyledLink>
       <StyledLink href="/(examples)/MeshExample">Mesh Example</StyledLink>
