@@ -72,6 +72,18 @@ function RootLayoutNav() {
             options={{ title: 'Trial Countdown' }}
           />
           <Stack.Screen
+            name="(examples)/TrialCountdownMini"
+            options={{ title: 'Trial Countdown Mini' }}
+          />
+          <Stack.Screen
+            name="(examples)/FraudSpamCard"
+            options={{ title: 'Fraud Spam Card' }}
+          />
+          <Stack.Screen
+            name="(examples)/DeviceInstallment"
+            options={{ title: 'Device Installment' }}
+          />
+          <Stack.Screen
             name="(examples)/DataBinding"
             options={{ title: 'DataBinding' }}
           />

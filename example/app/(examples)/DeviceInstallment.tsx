@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -20,8 +20,11 @@ import Rive, {
 const TOTAL_MONTHS = 36;
 const DOT_COUNT = 5;
 
-const BRAND_BLUE = { r: 0, g: 102, b: 204, a: 255 };
-const DOT_GRAY = { r: 208, g: 208, b: 208, a: 255 };
+/** DeviceInstallmentVM number: 0–10 filled dots across connector 1 (0–5) and 2 (5–10). */
+const VM_FILLED_DOT_COUNT = 'filledDotCount';
+
+/** Delay between each dot step. Use at least the Rive state’s interval/duration so each dot finishes animating before the next count is sent. */
+const DOT_STEP_INTERVAL_MS = 600;
 
 type ScenarioType = 1 | 2 | 3;
 
@@ -37,15 +40,30 @@ function getMilestone2Month(scenarioType: ScenarioType): number {
   return 0;
 }
 
-function isDotFilled(
-  dotIndex: number,
+/**
+ * Returns how many of the DOT_COUNT dots should be filled for a connector
+ * spanning [startMonth, endMonth] at the given currentMonth.
+ *
+ * Each milestone at the end of a connector counts as an additional implicit
+ * position, so the DOT_COUNT dots are placed at fractions 1/(DOT_COUNT+1)
+ * through DOT_COUNT/(DOT_COUNT+1) of the span. This ensures the final dot
+ * fills before the milestone activates, rather than simultaneously with it.
+ *
+ * Dot i is filled when currentMonth >= round(startMonth + span/(DOT_COUNT+1) * i).
+ */
+function getFilledDotCount(
   startMonth: number,
   endMonth: number,
   currentMonth: number
-): boolean {
+): number {
   const span = endMonth - startMonth;
-  const threshold = startMonth + (span / DOT_COUNT) * dotIndex;
-  return currentMonth >= Math.round(threshold);
+  let count = 0;
+  for (let i = 1; i <= DOT_COUNT; i++) {
+    if (currentMonth >= Math.round(startMonth + (span / (DOT_COUNT + 1)) * i)) {
+      count++;
+    }
+  }
+  return count;
 }
 
 export default function DeviceInstallment() {
@@ -67,16 +85,45 @@ export default function DeviceInstallment() {
 
   const [cacheKey] = useState(Date.now());
   const [scenarioType, setScenarioType] = useState<ScenarioType>(2);
-  const [currentMonth, setCurrentMonth] = useState(10);
+  const [currentMonth, setCurrentMonth] = useState(28);
+  const [animatedDotCount, setAnimatedDotCount] = useState(0);
 
   const milestone2Month = getMilestone2Month(scenarioType);
   const milestone2Visible = scenarioType !== 1;
 
-  const m1Active = true;
-  const m2Active = milestone2Visible && currentMonth >= milestone2Month;
-  const m3Active = currentMonth >= TOTAL_MONTHS;
+  const m1Active = currentMonth > 0;
+  const m2Active =
+    milestone2Visible &&
+    currentMonth >= milestone2Month &&
+    animatedDotCount >= 5;
+  const m3Active = milestone2Visible ? animatedDotCount >= 10 : animatedDotCount >= 5;
+
+  const c1End = milestone2Visible ? milestone2Month : TOTAL_MONTHS;
+  const targetDotCount =
+    getFilledDotCount(1, c1End, currentMonth) +
+    (milestone2Visible
+      ? getFilledDotCount(milestone2Month, TOTAL_MONTHS, currentMonth)
+      : 0);
 
   const [setRiveRef, riveRef] = useRive();
+
+  useEffect(() => {
+    setAnimatedDotCount(0);
+  }, [scenarioType]);
+
+  const stepRef = useRef<{ from: number; to: number } | null>(null);
+  useEffect(() => {
+    if (animatedDotCount === targetDotCount) return;
+    stepRef.current = { from: animatedDotCount, to: targetDotCount };
+    const timer = setTimeout(() => {
+      const step = stepRef.current;
+      if (!step) return;
+      const next =
+        step.from < step.to ? step.from + 1 : step.from - 1;
+      setAnimatedDotCount(next);
+    }, DOT_STEP_INTERVAL_MS);
+    return () => clearTimeout(timer);
+  }, [animatedDotCount, targetDotCount]);
 
   useEffect(() => {
     if (!riveRef) return;
@@ -130,28 +177,8 @@ export default function DeviceInstallment() {
       riveRef.setString('milestone3LinkLabel', 'Pay ($800.16) to own');
       riveRef.setBoolean('milestone3HideLink', false);
 
-      // Connector 1 dots — spans M1 → M2 (or M3 for Standard)
-      const c1End = milestone2Visible ? milestone2Month : TOTAL_MONTHS;
-      for (let i = 1; i <= DOT_COUNT; i++) {
-        const filled = isDotFilled(i, 1, c1End, currentMonth);
-        riveRef.setBoolean(`connector1Dot${i}/hideDot`, false);
-        riveRef.setBoolean(`connector1Dot${i}/isFilled`, filled);
-        riveRef.setColor(`connector1Dot${i}/fillColor`, filled ? BRAND_BLUE : DOT_GRAY);
-      }
-
-      // Connector 2 dots — spans M2 → M3 (hidden for Standard)
-      for (let i = 1; i <= DOT_COUNT; i++) {
-        if (milestone2Visible) {
-          const filled = isDotFilled(i, milestone2Month, TOTAL_MONTHS, currentMonth);
-          riveRef.setBoolean(`connector2Dot${i}/hideDot`, false);
-          riveRef.setBoolean(`connector2Dot${i}/isFilled`, filled);
-          riveRef.setColor(`connector2Dot${i}/fillColor`, filled ? BRAND_BLUE : DOT_GRAY);
-        } else {
-          riveRef.setBoolean(`connector2Dot${i}/hideDot`, true);
-          riveRef.setBoolean(`connector2Dot${i}/isFilled`, false);
-          riveRef.setColor(`connector2Dot${i}/fillColor`, DOT_GRAY);
-        }
-      }
+      // filledDotCount is a single 0–10 value across both connectors (animated step-by-step)
+      riveRef.setNumber(VM_FILLED_DOT_COUNT, animatedDotCount);
     } catch (e: any) {
       console.error('[DeviceInstallment] Error applying Rive bindings:', e);
     }
@@ -165,6 +192,7 @@ export default function DeviceInstallment() {
     m1Active,
     m2Active,
     m3Active,
+    animatedDotCount,
   ]);
 
   // VM Trigger listeners — fired by Rive Listeners on link tap areas
@@ -198,6 +226,7 @@ export default function DeviceInstallment() {
             : { resourceName: localResourceName })}
           fit={Fit.Layout}
           alignment={Alignment.Center}
+          layoutScaleFactor={-1.0}
           style={styles.animation}
           ref={setRiveRef}
           artboardName="DeviceInstallments"
