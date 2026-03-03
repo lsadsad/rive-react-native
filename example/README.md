@@ -35,6 +35,39 @@ To add local `.riv` files to the example app, see **[docs/ADDING_RIVE_FILES.md](
 3. Copy to `android/app/src/main/res/raw/` (lowercase filename)
 4. Rebuild both platforms: `npx expo run:ios` and `npx expo run:android`
 
+## Clearing cache
+
+If the app isn’t picking up changes, assets, or new files, clear the Metro/Expo cache.
+
+**Quick (often enough):**
+```bash
+npx expo start --clear
+```
+Or from the example folder: `yarn start:clear` or `npm run start:clear`.
+
+**If that doesn’t fix it — full cache clear (macOS/Linux):**
+```bash
+cd example
+watchman watch-del-all
+rm -rf $TMPDIR/haste-map-*
+rm -rf $TMPDIR/metro-cache
+npx expo start --clear
+```
+If you use Watchman, `watchman watch-del-all` clears its cache. Then restart the dev server with `--clear`.
+
+**Nuclear option (reinstall deps + clear caches):**
+```bash
+cd example
+rm -rf node_modules
+yarn cache clean    # or: npm cache clean --force
+yarn               # or: npm install
+watchman watch-del-all
+rm -rf $TMPDIR/haste-map-* $TMPDIR/metro-cache
+npx expo start --clear
+```
+
+After adding new `.riv` files or native assets, you still need a **full rebuild** (`yarn ios` / `yarn android`), not just a cache clear. See [docs/ADDING_RIVE_FILES.md](./docs/ADDING_RIVE_FILES.md).
+
 ## Get a fresh project
 
 When you're ready, run:

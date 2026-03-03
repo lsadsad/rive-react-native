@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
+    "start:clear": "expo start --clear",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "sync-rive": "node ./scripts/sync-rive-assets.js",
+    "android": "npm run sync-rive && expo run:android",
+    "ios": "npm run sync-rive && expo run:ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint"

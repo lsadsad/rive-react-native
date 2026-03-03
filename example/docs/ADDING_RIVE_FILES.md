@@ -2,6 +2,30 @@
 
 This guide explains how to properly add local `.riv` files to the example app so they work on both iOS and Android.
 
+## Sync Script (Single Source of Truth)
+
+**Source of truth:** `example/assets/rive/`. Put all `.riv` files here.
+
+A **sync script** copies from `assets/rive/` to the iOS and Android native folders. It runs **automatically** before every native build:
+
+- `npm run ios` → runs sync, then builds iOS
+- `npm run android` → runs sync, then builds Android
+
+You can also run it manually after adding or changing `.riv` files:
+
+```bash
+npm run sync-rive
+```
+
+**After adding a new file to `assets/rive/`:**
+1. Run `npm run sync-rive` (or just run `npm run ios` / `npm run android` — sync runs first).
+2. **iOS only (first time per file):** Add the new file to the Xcode project (Add Files to 'example' → Copy Bundle Resources). The sync script only copies files; Xcode must list them to include them in the app bundle.
+3. **Android:** New files in `res/raw/` are picked up automatically; no extra step.
+
+See [Project Structure Reference](#project-structure-reference) and [Why Multiple Locations?](#why-multiple-locations) below.
+
+---
+
 ## Quick Reference
 
 | Method | Use Case | iOS Setup | Android Setup | Rebuild Required |
@@ -253,9 +277,11 @@ React Native apps can bundle assets in different ways:
    - Files loaded via `resourceName` or native resolution of `require()`
 
 For reliability across dev and production, files should be in **all three locations**:
-- `example/assets/rive/` (Metro)
-- iOS Xcode project (iOS native)
-- `example/android/app/src/main/res/raw/` (Android native)
+- `example/assets/rive/` (Metro) — **maintain this folder only**
+- iOS Xcode project (iOS native) — sync script copies here; add new files in Xcode once
+- `example/android/app/src/main/res/raw/` (Android native) — sync script copies here automatically
+
+The **sync script** (`npm run sync-rive`) keeps the native folders in sync with `assets/rive/`. It runs automatically before `npm run ios` and `npm run android`, so you only maintain `assets/rive/` and run a build (or `npm run sync-rive`) when you add or change `.riv` files.
 
 ---
 
@@ -276,4 +302,5 @@ No additional configuration is needed.
 - [QuickStart.tsx](../app/(examples)/QuickStart.tsx) - Example using `resourceName`
 - [SourceProp.tsx](../app/(examples)/SourceProp.tsx) - Example using `source={require(...)}`
 - [RIVE_FILE_CHECKLIST.md](./RIVE_FILE_CHECKLIST.md) - Quick checklist for adding files
+- `npm run sync-rive` - Sync `assets/rive/` to iOS and Android (also runs before `npm run ios` / `npm run android`)
 - [Rive React Native Documentation](https://rive.app/docs/runtimes/react-native/)

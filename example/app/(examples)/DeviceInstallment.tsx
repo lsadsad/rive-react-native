@@ -24,7 +24,7 @@ const DOT_COUNT = 5;
 const VM_FILLED_DOT_COUNT = 'filledDotCount';
 
 /** Delay between each dot step. Use at least the Rive state’s interval/duration so each dot finishes animating before the next count is sent. */
-const DOT_STEP_INTERVAL_MS = 600;
+const DOT_STEP_INTERVAL_MS = 200;
 
 type ScenarioType = 1 | 2 | 3;
 
