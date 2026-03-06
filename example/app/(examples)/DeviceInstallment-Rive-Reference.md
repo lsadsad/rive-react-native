@@ -31,8 +31,8 @@ All of these are set on the Rive view model via `riveRef.setNumber`, `setBoolean
 | `milestone2Visible` | boolean | Set as `!milestone2Visible` (true when scenario is Standard, false for Next Up / Anytime) |
 | `isDarkMode` | boolean | From `useColorScheme() === 'dark'` |
 | `milestone1Active` | boolean | `currentMonth > 0` |
-| `milestone2Active` | boolean | `milestone2Visible && currentMonth >= milestone2Month && filledDotCount >= 5` (at milestone month 18/12, after connector 1’s 5 dots have filled) |
-| `milestone3Active` | boolean | `filledDotCount >= 10` when M2 visible, else `filledDotCount >= 5` (synced with dots: active when all path dots filled) |
+| `milestone2Active` | boolean | State (delayed): fires one `DOT_STEP_INTERVAL_MS` after `milestone2Visible && currentMonth >= milestone2Month && filledDotCount >= 5` is first true; M2 always follows dot 5 by one beat |
+| `milestone3Active` | boolean | State (delayed): fires one `DOT_STEP_INTERVAL_MS` after `currentMonth >= 36` and all path dots are filled (`filledDotCount >= 10` when M2 visible, else `>= 5`); pinned to month 36 |
 | `milestone1HideLink` | boolean | `scenarioType !== 3` |
 | `milestone2HideLink` | boolean | Set to `false` when milestone 2 is visible |
 | `milestone3HideLink` | boolean | Set to `false` |

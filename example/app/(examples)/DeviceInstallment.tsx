@@ -24,7 +24,10 @@ const DOT_COUNT = 5;
 const VM_FILLED_DOT_COUNT = 'filledDotCount';
 
 /** Delay between each dot step. Use at least the Rive state’s interval/duration so each dot finishes animating before the next count is sent. */
-const DOT_STEP_INTERVAL_MS = 200;
+const DOT_STEP_INTERVAL_MS = 300;
+
+/** Initial pause before the first dot starts filling (e.g. on mount or scenario change). */
+const DOT_START_DELAY_MS = 800;
 
 type ScenarioType = 1 | 2 | 3;
 
@@ -87,16 +90,28 @@ export default function DeviceInstallment() {
   const [scenarioType, setScenarioType] = useState<ScenarioType>(2);
   const [currentMonth, setCurrentMonth] = useState(28);
   const [animatedDotCount, setAnimatedDotCount] = useState(0);
+  const [m2Active, setM2Active] = useState(false);
+  const [m3Active, setM3Active] = useState(false);
 
   const milestone2Month = getMilestone2Month(scenarioType);
   const milestone2Visible = scenarioType !== 1;
 
   const m1Active = currentMonth > 0;
-  const m2Active =
+
+  /**
+   * "Ready" means all conditions to activate are met. The actual active state
+   * is set one DOT_STEP_INTERVAL_MS later so the milestone always animates in
+   * one beat after the preceding dot finishes, never simultaneously with it.
+   */
+  const m2Ready =
     milestone2Visible &&
     currentMonth >= milestone2Month &&
-    animatedDotCount >= 5;
-  const m3Active = milestone2Visible ? animatedDotCount >= 10 : animatedDotCount >= 5;
+    animatedDotCount >= DOT_COUNT;
+  const m3Ready =
+    currentMonth >= TOTAL_MONTHS &&
+    (milestone2Visible
+      ? animatedDotCount >= DOT_COUNT * 2
+      : animatedDotCount >= DOT_COUNT);
 
   const c1End = milestone2Visible ? milestone2Month : TOTAL_MONTHS;
   const targetDotCount =
@@ -109,19 +124,37 @@ export default function DeviceInstallment() {
 
   useEffect(() => {
     setAnimatedDotCount(0);
+    setM2Active(false);
+    setM3Active(false);
   }, [scenarioType]);
+
+  useEffect(() => {
+    if (!m2Ready) { setM2Active(false); return; }
+    const timer = setTimeout(() => setM2Active(true), DOT_STEP_INTERVAL_MS);
+    return () => clearTimeout(timer);
+  }, [m2Ready]);
+
+  useEffect(() => {
+    if (!m3Ready) { setM3Active(false); return; }
+    const timer = setTimeout(() => setM3Active(true), DOT_STEP_INTERVAL_MS);
+    return () => clearTimeout(timer);
+  }, [m3Ready]);
 
   const stepRef = useRef<{ from: number; to: number } | null>(null);
   useEffect(() => {
     if (animatedDotCount === targetDotCount) return;
     stepRef.current = { from: animatedDotCount, to: targetDotCount };
+    const delay =
+      animatedDotCount === 0 && targetDotCount > 0
+        ? DOT_START_DELAY_MS
+        : DOT_STEP_INTERVAL_MS;
     const timer = setTimeout(() => {
       const step = stepRef.current;
       if (!step) return;
       const next =
         step.from < step.to ? step.from + 1 : step.from - 1;
       setAnimatedDotCount(next);
-    }, DOT_STEP_INTERVAL_MS);
+    }, delay);
     return () => clearTimeout(timer);
   }, [animatedDotCount, targetDotCount]);
 
