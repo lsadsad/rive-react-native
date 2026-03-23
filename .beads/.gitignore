@@ -51,6 +51,9 @@ dolt-server.port
 # Backup data (auto-exported JSONL, local-only)
 backup/
 
+# Local credential material (never version)
+.beads-credential-key
+
 # Legacy files (from pre-Dolt versions)
 *.db
 *.db?*
