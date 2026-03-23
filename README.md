@@ -4,7 +4,24 @@
 
 # Rive React Native
 
-![Rive hero image](https://rive-app.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fff44ed5f-1eea-4154-81ef-84547e61c3fd%2Frive_notion.png?table=block&id=f198cab2-c0bc-4ce8-970c-42220379bcf3&spaceId=9c949665-9ad9-445f-b9c4-5ee204f8b60c&width=2000&userId=&cache=v2)
+![Rive hero image](https://cdn.rive.app/rive_logo_dark_bg.png)
+
+> **🚀 New Runtime Available!**
+>
+> The new Rive React Native runtime is now available. Built with Nitro for improved performance and better React Native integration.
+>
+> **Try it now:**
+>
+> - [GitHub](https://github.com/rive-app/rive-nitro-react-native)
+> - [NPM](https://www.npmjs.com/package/@rive-app/react-native)
+>
+> We're actively gathering feedback to improve the new runtime. Please share your thoughts and report any issues you encounter.
+>
+> **Migration Timeline:**
+>
+> - **Short term:** Complete the new runtime, see [Feature Support](https://github.com/rive-app/rive-nitro-react-native?tab=readme-ov-file#feature-support) and [Roadmap](https://github.com/rive-app/rive-nitro-react-native?tab=readme-ov-file#roadmap)
+> - **Medium term:** Address major concerns in this legacy package while supporting migration
+> - **Long term:** Full migration to the new package
 
 A React Native runtime library for [Rive](https://rive.app).
 
@@ -58,11 +75,13 @@ Check out the `example/` folder to run an example application using the Rive Rea
 - ...and more!
 
 Steps:
+
 1. Run `yarn bootstrap`
 2. cd `example`
 3. `yarn expo run:android` or `yarn expo run:ios`
 
 iOS:
+
 - You may need to run `pod install` (first time) or `pod update RiveRuntime` (updates to the underlying Rive iOS runtime) in the `example/iOS` folder to get the runtime installed or updated
 
 Android:
@@ -95,8 +114,8 @@ By default, `rive-react-native` uses the native SDK versions specified in `packa
 
 ```json
 "runtimeVersions": {
-  "ios": "6.12.0",
-  "android": "10.4.5"
+  "ios": "6.15.2",
+  "android": "11.2.0"
 }
 ```
 
@@ -112,11 +131,12 @@ Create or edit `ios/Podfile.properties.json`:
 
 ```json
 {
-  "RiveRuntimeIOSVersion": "6.13.0"
+  "RiveRuntimeIOSVersion": "6.15.2"
 }
 ```
 
 Then run:
+
 ```bash
 cd ios && pod install
 ```
@@ -126,7 +146,7 @@ cd ios && pod install
 Add to `android/gradle.properties`:
 
 ```properties
-Rive_RiveRuntimeAndroidVersion=10.5.0
+Rive_RiveRuntimeAndroidVersion=11.2.0
 ```
 
 #### Expo Projects
@@ -144,13 +164,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       withPodfileProperties,
       {
-        RiveRuntimeIOSVersion: '6.13.0',
+        RiveRuntimeIOSVersion: '6.15.2',
       },
     ],
     [
       withGradleProperties,
       {
-        Rive_RiveRuntimeAndroidVersion: '10.5.0',
+        Rive_RiveRuntimeAndroidVersion: '11.2.0',
       },
     ],
   ],
@@ -162,9 +182,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 The library resolves versions in the following order:
 
 **iOS:**
+
 1. `ios/Podfile.properties.json` → `RiveRuntimeIOSVersion`
 2. `package.json` → `runtimeVersions.ios` (default)
 
 **Android:**
+
 1. `android/gradle.properties` → `Rive_RiveRuntimeAndroidVersion`
 2. `package.json` → `runtimeVersions.android` (default)

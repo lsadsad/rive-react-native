@@ -84,6 +84,14 @@ function RootLayoutNav() {
             options={{ title: 'Device Installment' }}
           />
           <Stack.Screen
+            name="(examples)/MonthlySummary"
+            options={{ title: 'Monthly Summary' }}
+          />
+          <Stack.Screen
+            name="(examples)/DemoScripting"
+            options={{ title: 'Demo Scripting' }}
+          />
+          <Stack.Screen
             name="(examples)/DataBinding"
             options={{ title: 'DataBinding' }}
           />
