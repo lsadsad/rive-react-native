@@ -28,11 +28,25 @@ const iosDir = path.join(exampleDir, 'ios', 'Assets');
 const iosRootDir = path.join(exampleDir, 'ios');
 const androidDir = path.join(exampleDir, 'android', 'app', 'src', 'main', 'res', 'raw');
 
+// Android resource names must be valid Java identifiers (no reserved keywords).
+const ANDROID_RESERVED = new Set([
+  'abstract', 'assert', 'boolean', 'break', 'byte', 'case', 'catch', 'char', 'class',
+  'const', 'continue', 'default', 'do', 'double', 'else', 'enum', 'extends', 'final',
+  'finally', 'float', 'for', 'goto', 'if', 'implements', 'import', 'instanceof', 'int',
+  'interface', 'long', 'native', 'new', 'package', 'private', 'protected', 'public',
+  'return', 'short', 'static', 'strictfp', 'super', 'switch', 'synchronized', 'this',
+  'throw', 'throws', 'transient', 'try', 'void', 'volatile', 'while',
+]);
+
 function androidResourceName(basename) {
-  return basename
+  let name = basename
     .toLowerCase()
     .replace(/-/g, '_')
     .replace(/[^a-z0-9_.]/g, '');
+  if (ANDROID_RESERVED.has(name)) {
+    name = name + '_riv';
+  }
+  return name;
 }
 
 function ensureDir(dir) {

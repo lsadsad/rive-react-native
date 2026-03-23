@@ -1,0 +1,30 @@
+---
+description: Run Expo local dev without CI mode
+globs: ["example/**"]
+alwaysApply: false
+---
+
+# Expo Local Dev: CI Must Be Unset
+
+## Rule
+
+When starting local Expo/Metro development for this project, do not run with `CI=1`.
+
+Use:
+
+```bash
+env -u CI npx expo start
+```
+
+Avoid:
+
+```bash
+CI= npx expo start
+```
+
+`CI=` can fail in Expo CLI env parsing ("NoBoolean"), while `env -u CI` cleanly removes the variable.
+
+## Related behavior
+
+- In CI mode, Metro watch/reload behavior is limited.
+- For local simulator/device work, prefer interactive Metro with `CI` unset.

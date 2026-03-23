@@ -23,7 +23,7 @@ const DOT_COUNT = 5;
 /** DeviceInstallmentVM number: 0–10 filled dots across connector 1 (0–5) and 2 (5–10). */
 const VM_FILLED_DOT_COUNT = 'filledDotCount';
 
-/** Delay between each dot step. Use at least the Rive state’s interval/duration so each dot finishes animating before the next count is sent. */
+/** Delay between each dot step. Use at least the Rive state's interval/duration so each dot finishes animating before the next count is sent. */
 const DOT_STEP_INTERVAL_MS = 300;
 
 /** Initial pause before the first dot starts filling (e.g. on mount or scenario change). */
@@ -167,7 +167,7 @@ export default function DeviceInstallment() {
       riveRef.setNumber('currentMonth', currentMonth);
       riveRef.setNumber('totalMonths', TOTAL_MONTHS);
       riveRef.setNumber('milestone2Month', milestone2Month);
-      riveRef.setBoolean('milestone2Visible', !milestone2Visible);
+      riveRef.setBoolean('milestone2Hide', scenarioType === 1);
 
       // Layout & theme
       riveRef.setNumber('scalePercent', 100);
@@ -257,7 +257,7 @@ export default function DeviceInstallment() {
           {...(USE_REMOTE
             ? { url: `${remoteUrl}?t=${cacheKey}` }
             : { resourceName: localResourceName })}
-          fit={Fit.Layout}
+          fit={Fit.Contain}
           alignment={Alignment.Center}
           layoutScaleFactor={-1.0}
           style={styles.animation}

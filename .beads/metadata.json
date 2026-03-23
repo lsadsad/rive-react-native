@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "Rive_MCP",
+  "project_id": "2bfa62f5-0c71-40a6-8f95-3bd8a047bf0c"
+}

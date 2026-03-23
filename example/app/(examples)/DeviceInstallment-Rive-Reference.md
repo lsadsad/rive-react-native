@@ -28,7 +28,7 @@ All of these are set on the Rive view model via `riveRef.setNumber`, `setBoolean
 
 | Variable | Type | Description / source |
 |----------|------|----------------------|
-| `milestone2Visible` | boolean | Set as `!milestone2Visible` (true when scenario is Standard, false for Next Up / Anytime) |
+| `milestone2Hide` | boolean | `scenarioType === 1` — true when Standard (hides M2), false for Next Up / Anytime (shows M2) |
 | `isDarkMode` | boolean | From `useColorScheme() === 'dark'` |
 | `milestone1Active` | boolean | `currentMonth > 0` |
 | `milestone2Active` | boolean | State (delayed): fires one `DOT_STEP_INTERVAL_MS` after `milestone2Visible && currentMonth >= milestone2Month && filledDotCount >= 5` is first true; M2 always follows dot 5 by one beat |
@@ -62,3 +62,47 @@ Fired by Rive Listeners on link tap areas; the component subscribes via `useRive
 | `milestone1LinkTapped` | `Alert.alert(…, 'Navigate to: /installments/milestone-1')` |
 | `milestone2LinkTapped` | `Alert.alert(…, 'Navigate to: /installments/milestone-2')` |
 | `milestone3LinkTapped` | `Alert.alert(…, 'Navigate to: /installments/milestone-3')` |
+
+> **Stub:** All three trigger handlers currently call `Alert.alert` as a placeholder. Production must wire these to the real navigation stack (e.g. React Navigation `navigate('/installments/milestone-N')`).
+
+---
+
+## Implementation notes
+
+### Rive component props
+
+| Prop | Value | Why |
+|------|-------|-----|
+| `fit` | `Fit.Contain` | Scales the artboard proportionally to fill the available width while maintaining aspect ratio. `Fit.Layout` renders the artboard at its design-time size on Android (appears very small) because the Rive Android SDK defaults to physical-pixel coordinates when `layoutScaleFactor` is not a positive value. |
+| `alignment` | `Alignment.Center` | Centers the artboard within its container when `Fit.Layout` leaves extra space |
+| `layoutScaleFactor` | `-1.0` | Tells the runtime to use the device's native pixel ratio for scaling. Omitting this or using `1.0` causes blurry rendering on high-DPI screens |
+| `dataBinding` | `AutoBind(true)` | Rive runtime auto-binds the view model by matching variable names. All inputs listed above must exactly match the names in the Rive file's view model |
+
+### Dot animation timing constants
+
+| Constant | Value | Description |
+|----------|-------|-------------|
+| `DOT_STEP_INTERVAL_MS` | `300` | Delay between each individual dot step. **Must be ≥ the Rive state's own animation interval/duration**, otherwise the next count arrives before the current dot finishes and visual frames are skipped |
+| `DOT_START_DELAY_MS` | `800` | Initial hold before the first dot animates in — applies on mount and on every scenario change |
+
+### `milestone2Hide` naming convention
+
+The Rive VM input `milestone2Hide` follows the same `hide`-prefix convention as `milestone1HideLink`, `milestone2HideLink`, and `milestone3HideLink` — `true` means hidden. The binding is simply `riveRef.setBoolean('milestone2Hide', scenarioType === 1)`, readable without any mental inversion.
+
+### M2 inputs are never written in Standard scenario
+
+When `scenarioType === 1`, the `if (milestone2Visible)` block is skipped entirely — `milestone2Subtitle`, `milestone2Description`, `milestone2LinkLabel`, and `milestone2HideLink` are never called. They retain the Rive file's defaults. This is intentional: the Rive artboard hides M2 content via the `milestone2Hide` flag. Do not add an explicit reset without understanding the Rive side.
+
+### Scenario change side effects
+
+`handleScenarioChange` calls both `setScenarioType` and `setCurrentMonth(0)` in the same handler. A separate `useEffect` on `scenarioType` then synchronously resets `animatedDotCount → 0`, `m2Active → false`, and `m3Active → false`. All of this must fire together to keep the dot animation and milestone states consistent with the new scenario.
+
+### Dot placement formula
+
+`getFilledDotCount(startMonth, endMonth, currentMonth)` places dots at fractions `i/(DOT_COUNT+1)` of the span (not `i/DOT_COUNT`). This offsets the last dot so it completes one beat *before* the milestone activates, never simultaneously. Connector 1 always starts at month **1**, not 0, so no dots fill at month 0.
+
+### Dev-only defaults to update before production
+
+- **Initial scenario:** `useState<ScenarioType>(2)` — starts on Next Up for testing. Production likely starts at `1` (Standard).
+- **Initial month:** `useState(28)` — starts mid-journey for testing. Production likely starts at `0`.
+- **`USE_REMOTE = false`:** switch to `true` and update `remoteUrl` for production. Note the current `remoteUrl` points to `rive_featureTest.riv`, **not** `services_installments.riv` — update the URL before enabling remote loading.

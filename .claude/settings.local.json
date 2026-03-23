@@ -9,9 +9,29 @@
       "Bash(corepack enable)",
       "Bash(corepack prepare:*)",
       "Bash(yarn:*)",
-      "Bash(npx expo run:ios)"
+      "Bash(npx expo run:ios)",
+      "Bash(bd list:*)",
+      "Skill(update-config)",
+      "Bash(python3 -m json.tool)",
+      "Bash(find ~/.claude -name *.json)",
+      "Read(//Users/levinsadsad/Documents/GitHub/mcp-knowledge-bases/servers/rive-kb/**)",
+      "Read(//Users/levinsadsad/Documents/GitHub/mcp-knowledge-bases/servers/relay-kb/**)",
+      "mcp__plugin_context7_context7__query-docs",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "Bash(bd show:*)",
+      "Bash(node scripts/sync-rive-assets.js)",
+      "mcp__rive__listStateMachines",
+      "mcp__rive__listViewModels",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "rive",
+    "context7"
+  ]
 }
